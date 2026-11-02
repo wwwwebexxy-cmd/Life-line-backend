@@ -63,7 +63,7 @@ class CustomerEmailTests(TestCase):
         self.assertTrue(send_registration_email(user.id))
         self.assertEqual(len(mail.outbox), 1)
         message = mail.outbox[0]
-        self.assertIn("Welcome to EEHOOK", message.subject)
+        self.assertIn("Welcome to LIFE-LINE", message.subject)
         self.assertIn("New Customer", message.body)
         self.assertIn(assignment.code, message.body)
         self.assertIsNotNone(User.objects.get(pk=user.pk).registration_email_sent_at)
@@ -134,9 +134,9 @@ class CustomerEmailTests(TestCase):
         self.assertIn("AED 50.00 off", message.body)
         self.assertIn(product.name, message.body)
         self.assertNotIn(expired_assignment.code, message.body)
-        self.assertIn("cid:eehook-logo", html)
+        self.assertIn("cid:life-line-logo", html)
         self.assertIn(product.name, html)
-        self.assertIn("https://www.instagram.com/eehook.ae", html)
+        self.assertNotIn("instagram.com", html)
         self.assertIn("Member offers", html)
         self.assertLess(html.index("YOUR WELCOME GIFT"), html.index("Member offers"))
         self.assertNotIn("coupon", message.body.lower())
@@ -144,7 +144,7 @@ class CustomerEmailTests(TestCase):
         self.assertNotIn(expired_assignment.code, html)
         self.assertTrue(
             any(
-                part.get("Content-ID") == "<eehook-logo>"
+                part.get("Content-ID") == "<life-line-logo>"
                 for part in message.message().walk()
             )
         )
@@ -222,10 +222,10 @@ class CustomerEmailTests(TestCase):
         self.assertIn("SHIPPING TO", html)
         self.assertIn("PAYMENT", html)
         self.assertIn("VIEW MY ORDER", html)
-        self.assertIn("cid:eehook-logo", html)
+        self.assertIn("cid:life-line-logo", html)
         self.assertTrue(
             any(
-                part.get("Content-ID") == "<eehook-logo>"
+                part.get("Content-ID") == "<life-line-logo>"
                 for part in message.message().walk()
             )
         )
@@ -263,7 +263,7 @@ class CustomerEmailTests(TestCase):
         self.assertIn("WHERE&apos;S MY ORDER?", html)
         self.assertIn("Buy More", html)
         self.assertIn("My Account", html)
-        self.assertIn("cid:eehook-logo", html)
+        self.assertIn("cid:life-line-logo", html)
         pdf_attachments = [
             attachment
             for attachment in message.attachments
@@ -278,7 +278,7 @@ class CustomerEmailTests(TestCase):
         self.assertTrue(attachment[1].startswith(b"%PDF"))
         self.assertTrue(
             any(
-                part.get("Content-ID") == "<eehook-logo>"
+                part.get("Content-ID") == "<life-line-logo>"
                 for part in message.message().walk()
             )
         )

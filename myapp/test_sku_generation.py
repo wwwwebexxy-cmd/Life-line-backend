@@ -43,7 +43,7 @@ class SkuGenerationTests(TestCase):
 
         self.assertEqual(response.status_code, 201, response.data)
         variant = ProductVariant.objects.get(pk=response.data["id"])
-        self.assertEqual(variant.sku, f"EHK-V-{variant.pk:06d}")
+        self.assertEqual(variant.sku, f"LL-V-{variant.pk:06d}")
 
     def test_manual_variant_sku_is_preserved_without_generation(self):
         response = self.client.post(
@@ -78,4 +78,4 @@ class SkuGenerationTests(TestCase):
 
         self.assertEqual(response.status_code, 201, response.data)
         unit = ProductVariantUnit.objects.get(pk=response.data["id"])
-        self.assertEqual(unit.sku, f"EHK-U-{unit.pk:06d}")
+        self.assertEqual(unit.sku, f"LL-U-{unit.pk:06d}")

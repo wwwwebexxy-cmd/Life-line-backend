@@ -2623,7 +2623,7 @@ class OrderPackageLabelTests(TestCase):
         address = Address.objects.create(
             user=self.customer,
             full_name="Sadiqu Hassan",
-            phone="+971547369369",
+            phone="+10000000000",
             address_line="Deira",
             city="Dubai",
             postal_code="00000",
@@ -2663,7 +2663,7 @@ class OrderPackageLabelTests(TestCase):
         self.assertEqual(response.status_code, 200, response.content)
         self.assertEqual(response["Content-Type"], "application/pdf")
         self.assertIn(
-            f'EHK26-{self.order.id:04d}-package-label.pdf',
+            f'LL26-{self.order.id:04d}-package-label.pdf',
             response["Content-Disposition"],
         )
         self.assertTrue(response.content.startswith(b"%PDF"))

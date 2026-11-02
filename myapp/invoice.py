@@ -1,4 +1,4 @@
-"""Backend-generated tax invoice PDFs for paid EEHOOK orders."""
+"""Backend-generated tax invoice PDFs for paid orders."""
 
 from decimal import Decimal, ROUND_HALF_UP
 from html import escape
@@ -27,7 +27,7 @@ ORANGE = HexColor("#ff9000")
 SLATE = HexColor("#4f6973")
 LIGHT_ORANGE = HexColor("#fff4e5")
 TABLE_LINE = HexColor("#222222")
-EEHOOK_LOGO_PATH = Path(__file__).with_name("assets") / "eehook-package-logo.png"
+LIFE_LINE_LOGO_PATH = Path(__file__).with_name("assets") / "life-line-package-logo.png"
 MARGIN = 48
 CONTENT_WIDTH = PAGE_WIDTH - MARGIN * 2
 
@@ -48,11 +48,11 @@ def _money_text(value):
 
 
 def _invoice_number(order):
-    return f"INV-EHK26-{order.pk:04d}"
+    return f"INV-LL26-{order.pk:04d}"
 
 
 def _order_number(order):
-    return f"EHK26/{order.pk:04d}"
+    return f"LL26/{order.pk:04d}"
 
 
 def _full_name(order):
@@ -85,8 +85,8 @@ def _address_lines(address):
 
 
 def _draw_logo(pdf, x, y, scale=1):
-    if EEHOOK_LOGO_PATH.is_file():
-        image = ImageReader(str(EEHOOK_LOGO_PATH))
+    if LIFE_LINE_LOGO_PATH.is_file():
+        image = ImageReader(str(LIFE_LINE_LOGO_PATH))
         image_width, image_height = image.getSize()
         # The supplied logo is placed on a white canvas. Crop that whitespace
         # at render time so the invoice gets the actual mark, not a tiny logo
@@ -129,7 +129,7 @@ def _draw_logo(pdf, x, y, scale=1):
     pdf.rect(x + 15 * scale, y + 42 * scale, 17 * scale, 7 * scale, fill=1, stroke=0)
     pdf.setFillColor(SLATE)
     pdf.setFont("Helvetica-Bold", 19 * scale)
-    pdf.drawString(x + 3 * scale, y + 22 * scale, "eehook")
+    pdf.drawString(x + 3 * scale, y + 22 * scale, "life-line")
     pdf.setFillColor(ORANGE)
     pdf.setFont("Helvetica-Oblique", 6 * scale)
     pdf.drawRightString(x + 73 * scale, y + 13 * scale, "Seriously Different")
@@ -365,11 +365,11 @@ def _draw_summary(pdf, order, page_height, rows):
     pdf.setFont("Helvetica", 7.2)
     method = _clean(order.get_payment_method_display() if hasattr(order, "get_payment_method_display") else order.payment_method)
     pdf.drawString(left_x, note_y, f"This invoice amount has been paid by {method}")
-    pdf.drawString(left_x, note_y - 19, "Thank you for shopping at the EEHOOK.")
+    pdf.drawString(left_x, note_y - 19, "Thank you for shopping at the LIFE-LINE.")
     pdf.drawString(left_x, note_y - 42, "If you have any questions regarding this invoice or the goods")
     pdf.drawString(left_x, note_y - 53, "delivered, please contact our Customer Service Department.")
     pdf.drawString(left_x, note_y - 76, "Phone: +971 547369369   All Day ; 9:00 - 22:00")
-    pdf.drawString(left_x, note_y - 87, "Web: www.eehook.com/support")
+    pdf.drawString(left_x, note_y - 87, "Web: the configured site/support")
 
 
 def _draw_social_icon(pdf, platform, x, y, size):
@@ -427,15 +427,8 @@ def _draw_footer(pdf, page_height):
     center = PAGE_WIDTH / 2
     icon_size = 18
     gap = 8
-    social_links = (
-        ("instagram", "https://www.instagram.com/eehook.ae"),
-        ("facebook", "https://www.facebook.com/eehookonline/"),
-        ("tiktok", "https://www.tiktok.com/@eehook.com"),
-        ("youtube", "https://www.youtube.com/@eehook9631"),
-        ("x", "https://x.com/eehookonline"),
-        ("snapchat", "https://www.snapchat.com/add/eehook.com"),
-    )
-    total_width = len(social_links) * icon_size + (len(social_links) - 1) * gap
+    social_links = ()
+    total_width = len(social_links) * icon_size + max(0, len(social_links) - 1) * gap
     start_x = center - total_width / 2
     for index, (platform, url) in enumerate(social_links):
         x = start_x + index * (icon_size + gap)
@@ -444,7 +437,7 @@ def _draw_footer(pdf, page_height):
 
     pdf.setFillColor(HexColor("#303047"))
     pdf.setFont("Helvetica", 9)
-    pdf.drawCentredString(center, y - 22, "Follow our social media @eehook")
+    pdf.drawCentredString(center, y - 22, "Visit the configured website for support")
 
 
 def render_tax_invoice(order):
@@ -468,13 +461,13 @@ def render_tax_invoice(order):
     pdf.setFillColor(INK)
     pdf.setFont("Helvetica-Bold", 20)
     pdf.drawString(MARGIN, top - 18, "Tax Invoice")
-    seller_name = getattr(settings, "INVOICE_SELLER_NAME", "DEXON Advertising LLC")
+    seller_name = getattr(settings, "INVOICE_SELLER_NAME", "Life-line")
     seller_lines = [
         seller_name,
-        getattr(settings, "INVOICE_SELLER_ADDRESS", "S09 Beirut St"),
-        getattr(settings, "INVOICE_SELLER_CITY", "Al Qusais Ind 5 Dubai"),
-        getattr(settings, "INVOICE_SELLER_COUNTRY", "United Arab Emirates"),
-        f"VAT No: {getattr(settings, 'INVOICE_SELLER_VAT_NUMBER', '104131003600003')}",
+        getattr(settings, "INVOICE_SELLER_ADDRESS", "Configured seller address"),
+        getattr(settings, "INVOICE_SELLER_CITY", "Configured seller city"),
+        getattr(settings, "INVOICE_SELLER_COUNTRY", "Configured seller country"),
+        f"VAT No: {getattr(settings, 'INVOICE_SELLER_VAT_NUMBER', 'Not configured')}",
     ]
     pdf.setFont("Helvetica-Bold", 8.5)
     pdf.drawString(MARGIN, top - 41, _clean(seller_lines[0]))
@@ -486,7 +479,7 @@ def render_tax_invoice(order):
     invoice_date = localtime(order.created_at).strftime("%d.%m.%Y") if order.created_at else "-"
     left_y = top - 177
     _draw_label_value(pdf, "Tax Invoice Number", _invoice_number(order), MARGIN, left_y, MARGIN + 125)
-    _draw_label_value(pdf, "EEHOOK Order Number", _order_number(order), MARGIN, left_y - 17, MARGIN + 125)
+    _draw_label_value(pdf, "LIFE-LINE Order Number", _order_number(order), MARGIN, left_y - 17, MARGIN + 125)
     _draw_label_value(pdf, "Invoice Date", invoice_date, MARGIN, left_y - 34, MARGIN + 125)
     _draw_label_value(pdf, "Due Date", invoice_date, MARGIN, left_y - 51, MARGIN + 125)
 

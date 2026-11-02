@@ -19,7 +19,7 @@ def assign_generated_variant_sku(variant):
         return variant.sku
     from .models import ProductVariant
 
-    variant.sku = _unique_sku(ProductVariant, f"EHK-V-{variant.pk:06d}", variant)
+    variant.sku = _unique_sku(ProductVariant, f"LL-V-{variant.pk:06d}", variant)
     variant.save(update_fields=("sku",))
     return variant.sku
 
@@ -29,7 +29,7 @@ def assign_generated_variant_unit_sku(unit):
         return unit.sku
     from .models import ProductVariantUnit
 
-    unit.sku = _unique_sku(ProductVariantUnit, f"EHK-U-{unit.pk:06d}", unit)
+    unit.sku = _unique_sku(ProductVariantUnit, f"LL-U-{unit.pk:06d}", unit)
     unit.save(update_fields=("sku",))
     return unit.sku
 

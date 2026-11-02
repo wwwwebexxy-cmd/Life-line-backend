@@ -261,7 +261,7 @@ else:
     EMAIL_HOST_PASSWORD = os.getenv("EMAIL_HOST_PASSWORD", "")
     DEFAULT_FROM_EMAIL = os.getenv(
         "DEFAULT_FROM_EMAIL",
-        EMAIL_HOST_USER or "no-reply@eehook.invalid",
+        EMAIL_HOST_USER or "no-reply@life-line.invalid",
     ).strip()
 
 if EMAIL_USE_TLS and EMAIL_USE_SSL:
@@ -389,11 +389,11 @@ STRIPE_PUBLISHABLE_KEY = os.getenv("STRIPE_PUBLISHABLE_KEY")
 STRIPE_SECRET_KEY = os.getenv("STRIPE_SECRET_KEY")
 STRIPE_WEBHOOK_SECRET = os.getenv("STRIPE_WEBHOOK_SECRET")
 
-# WhatsApp Cloud API. The owner number is stored as digits only, including
-# country code (971547369369), as required by Meta's API.
+# WhatsApp Cloud API. Configure the owner number as digits only, including the
+# country code, as required by Meta's API.
 WHATSAPP_ACCESS_TOKEN = os.getenv("WHATSAPP_ACCESS_TOKEN", "")
 WHATSAPP_PHONE_NUMBER_ID = os.getenv("WHATSAPP_PHONE_NUMBER_ID", "")
-WHATSAPP_OWNER_PHONE = os.getenv("WHATSAPP_OWNER_PHONE", "971547369369")
+WHATSAPP_OWNER_PHONE = os.getenv("WHATSAPP_OWNER_PHONE", "")
 WHATSAPP_API_VERSION = os.getenv("WHATSAPP_API_VERSION", "v22.0")
 
 

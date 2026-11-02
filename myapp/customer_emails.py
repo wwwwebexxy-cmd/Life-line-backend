@@ -22,14 +22,8 @@ from .sku import resolve_order_item_sku
 
 logger = logging.getLogger(__name__)
 
-EMAIL_LOGO_PATH = Path(__file__).with_name("assets") / "eehook-package-logo.png"
-SOCIAL_LINKS = (
-    ("X", "https://x.com/eehookonline", "#111111"),
-    ("f", "https://www.facebook.com/eehookonline/", "#1877f2"),
-    ("t", "https://www.tiktok.com/@eehook.com", "#111111"),
-    ("◎", "https://www.instagram.com/eehook.ae", "#e4405f"),
-    ("▶", "https://www.youtube.com/@eehook9631", "#ff0000"),
-)
+EMAIL_LOGO_PATH = Path(__file__).with_name("assets") / "life-line-package-logo.png"
+SOCIAL_LINKS = ()
 
 
 def _site_url(path=""):
@@ -250,11 +244,11 @@ def _email_shell(title, content):
     <div style=\"margin:0;background:#f8faf8;padding:28px 12px;font-family:Arial,Helvetica,sans-serif;color:#304a54\">
       <table role=\"presentation\" style=\"width:100%;max-width:680px;margin:0 auto;background:#fff;border:1px solid #e2e8e4;border-radius:14px;border-collapse:separate;overflow:hidden\">
         <tr><td style=\"padding:24px 30px;border-bottom:1px solid #e2e8e4\">
-          <div style=\"font-size:28px;font-weight:800;letter-spacing:-1px;color:#4f6973\"><span style=\"color:#ff9000\">+</span>eehook</div>
+          <div style=\"font-size:28px;font-weight:800;letter-spacing:-1px;color:#4f6973\"><span style=\"color:#ff9000\">+</span>life-line</div>
           <div style=\"margin-top:3px;color:#ff9000;font-size:11px;font-style:italic\">Seriously Different</div>
         </td></tr>
         <tr><td style=\"padding:30px\"><h1 style=\"margin:0 0 18px;color:#111;font-size:26px\">{title}</h1>{content}</td></tr>
-        <tr><td style=\"padding:18px 30px;background:#fafcfa;border-top:1px solid #e2e8e4;color:#71858d;font-size:12px\">Need help? Email <a href=\"mailto:support@eehook.com\" style=\"color:#d97f00\">support@eehook.com</a>.</td></tr>
+        <tr><td style=\"padding:18px 30px;background:#fafcfa;border-top:1px solid #e2e8e4;color:#71858d;font-size:12px\">Need help? Email <a href=\"mailto:support@example.invalid\" style=\"color:#d97f00\">support@example.invalid</a>.</td></tr>
       </table>
     </div>
     """
@@ -370,7 +364,7 @@ def _welcome_gift_text(assignments):
 
 def _social_links_html():
     return "".join(
-        f"<a href=\"{escape(url)}\" aria-label=\"EEHOOK on {escape(label)}\" style=\"display:inline-block;margin:0 3px;text-decoration:none\"><span style=\"display:inline-block;width:24px;height:24px;line-height:24px;border-radius:50%;background:{color};color:#ffffff;font-size:12px;font-weight:800;text-align:center\">{escape(label)}</span></a>"
+        f"<a href=\"{escape(url)}\" aria-label=\"LIFE-LINE on {escape(label)}\" style=\"display:inline-block;margin:0 3px;text-decoration:none\"><span style=\"display:inline-block;width:24px;height:24px;line-height:24px;border-radius:50%;background:{color};color:#ffffff;font-size:12px;font-weight:800;text-align:center\">{escape(label)}</span></a>"
         for label, url, color in SOCIAL_LINKS
     )
 
@@ -383,44 +377,44 @@ def _registration_email_html(name, gift_html):
       <head>
         <meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">
         <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">
-        <title>Welcome to EEHOOK</title>
+        <title>Welcome to LIFE-LINE</title>
         <style>
           @media screen and (max-width: 620px) {{
-            .eehook-email-shell {{ padding: 10px !important; }}
-            .eehook-email-card {{ width: 100% !important; }}
-            .eehook-email-body {{ padding: 28px 20px !important; }}
-            .eehook-feature-cell {{ display: block !important; width: 100% !important; padding: 8px 0 !important; }}
+            .life-line-email-shell {{ padding: 10px !important; }}
+            .life-line-email-card {{ width: 100% !important; }}
+            .life-line-email-body {{ padding: 28px 20px !important; }}
+            .life-line-feature-cell {{ display: block !important; width: 100% !important; padding: 8px 0 !important; }}
           }}
         </style>
       </head>
       <body style=\"margin:0;padding:0;background:#f4f0e6;font-family:Arial,Helvetica,sans-serif;color:#304a54\">
-        <div class=\"eehook-email-shell\" style=\"padding:28px 12px;background:#f4f0e6\">
-          <table role=\"presentation\" class=\"eehook-email-card\" width=\"100%\" cellpadding=\"0\" cellspacing=\"0\" style=\"width:100%;max-width:620px;margin:0 auto;background:#ffffff;border-top:4px solid #ff9000;border-radius:8px;overflow:hidden\">
+        <div class=\"life-line-email-shell\" style=\"padding:28px 12px;background:#f4f0e6\">
+          <table role=\"presentation\" class=\"life-line-email-card\" width=\"100%\" cellpadding=\"0\" cellspacing=\"0\" style=\"width:100%;max-width:620px;margin:0 auto;background:#ffffff;border-top:4px solid #ff9000;border-radius:8px;overflow:hidden\">
             <tr>
               <td style=\"padding:28px 30px 18px;text-align:right\">
-                <a href=\"{site_url}\" style=\"text-decoration:none\"><img src=\"cid:eehook-logo\" width=\"165\" alt=\"EEHOOK - Seriously Different\" style=\"display:inline-block;width:165px;max-width:70%;height:auto;border:0\"></a>
+                <a href=\"{site_url}\" style=\"text-decoration:none\"><img src=\"cid:life-line-logo\" width=\"165\" alt=\"LIFE-LINE - Seriously Different\" style=\"display:inline-block;width:165px;max-width:70%;height:auto;border:0\"></a>
               </td>
             </tr>
             <tr>
-              <td class=\"eehook-email-body\" style=\"padding:8px 50px 34px\">
+              <td class=\"life-line-email-body\" style=\"padding:8px 50px 34px\">
                 <table role=\"presentation\" width=\"100%\" cellpadding=\"0\" cellspacing=\"0\">
-                  <tr><td style=\"font-size:12px;line-height:1.4;color:#ff9000;font-weight:800;letter-spacing:.8px\">WELCOME TO <span style=\"color:#38586a\">EEHOOK</span> <a href=\"{escape(_site_url('/login'))}\" style=\"display:inline-block;margin-left:8px;padding:4px 8px;border:1px solid #f0c276;border-radius:12px;color:#a46a13;font-size:10px;text-decoration:none;letter-spacing:0\">Login to your account</a></td></tr>
+                  <tr><td style=\"font-size:12px;line-height:1.4;color:#ff9000;font-weight:800;letter-spacing:.8px\">WELCOME TO <span style=\"color:#38586a\">LIFE-LINE</span> <a href=\"{escape(_site_url('/login'))}\" style=\"display:inline-block;margin-left:8px;padding:4px 8px;border:1px solid #f0c276;border-radius:12px;color:#a46a13;font-size:10px;text-decoration:none;letter-spacing:0\">Login to your account</a></td></tr>
                   <tr><td style=\"padding-top:26px;font-size:28px;line-height:1.15;color:#17364b;font-weight:800\">One last step, {escape(name)}.</td></tr>
-                  <tr><td style=\"padding-top:14px;font-size:15px;line-height:1.65;color:#61717b\">Thanks for creating your EEHOOK account. Your account is active and ready for seriously different products.</td></tr>
+                  <tr><td style=\"padding-top:14px;font-size:15px;line-height:1.65;color:#61717b\">Thanks for creating your LIFE-LINE account. Your account is active and ready for seriously different products.</td></tr>
                   <tr><td style=\"padding-top:22px\"><a href=\"{site_url}\" style=\"display:inline-block;padding:13px 18px;border-radius:5px;background:#38586a;color:#ffffff;font-size:12px;font-weight:800;letter-spacing:.5px;text-decoration:none\">START SHOPPING</a></td></tr>
                   {f'<tr><td>{gift_html}</td></tr>' if gift_html else ''}
                   <tr><td style=\"padding-top:20px;font-size:12px;line-height:1.55;color:#71858d\">You can manage your account, orders and saved products any time from My Account.</td></tr>
                   <tr><td style=\"padding-top:28px\"><table role=\"presentation\" width=\"100%\" cellpadding=\"0\" cellspacing=\"0\"><tr>
-                    <td class=\"eehook-feature-cell\" width=\"33.33%\" valign=\"top\" style=\"padding-right:12px\"><span style=\"display:block;width:22px;height:22px;background:#ff9000\"></span><strong style=\"display:block;padding-top:9px;font-size:13px;color:#304a54\">Fast delivery</strong><span style=\"display:block;padding-top:4px;font-size:11px;line-height:1.45;color:#71858d\">Tracked shipping straight to your door.</span></td>
-                    <td class=\"eehook-feature-cell\" width=\"33.33%\" valign=\"top\" style=\"padding:0 6px\"><span style=\"display:block;width:22px;height:22px;background:#ff9000\"></span><strong style=\"display:block;padding-top:9px;font-size:13px;color:#304a54\">Easy returns</strong><span style=\"display:block;padding-top:4px;font-size:11px;line-height:1.45;color:#71858d\">Changed your mind? No stress.</span></td>
-                    <td class=\"eehook-feature-cell\" width=\"33.33%\" valign=\"top\" style=\"padding-left:12px\"><span style=\"display:block;width:22px;height:22px;background:#ff9000\"></span><strong style=\"display:block;padding-top:9px;font-size:13px;color:#304a54\">Member offers</strong><span style=\"display:block;padding-top:4px;font-size:11px;line-height:1.45;color:#71858d\">First to know about new drops.</span></td>
+                    <td class=\"life-line-feature-cell\" width=\"33.33%\" valign=\"top\" style=\"padding-right:12px\"><span style=\"display:block;width:22px;height:22px;background:#ff9000\"></span><strong style=\"display:block;padding-top:9px;font-size:13px;color:#304a54\">Fast delivery</strong><span style=\"display:block;padding-top:4px;font-size:11px;line-height:1.45;color:#71858d\">Tracked shipping straight to your door.</span></td>
+                    <td class=\"life-line-feature-cell\" width=\"33.33%\" valign=\"top\" style=\"padding:0 6px\"><span style=\"display:block;width:22px;height:22px;background:#ff9000\"></span><strong style=\"display:block;padding-top:9px;font-size:13px;color:#304a54\">Easy returns</strong><span style=\"display:block;padding-top:4px;font-size:11px;line-height:1.45;color:#71858d\">Changed your mind? No stress.</span></td>
+                    <td class=\"life-line-feature-cell\" width=\"33.33%\" valign=\"top\" style=\"padding-left:12px\"><span style=\"display:block;width:22px;height:22px;background:#ff9000\"></span><strong style=\"display:block;padding-top:9px;font-size:13px;color:#304a54\">Member offers</strong><span style=\"display:block;padding-top:4px;font-size:11px;line-height:1.45;color:#71858d\">First to know about new drops.</span></td>
                   </tr></table></td></tr>
                 </table>
               </td>
             </tr>
             <tr><td style=\"padding:0 50px\"><div style=\"height:1px;background:#e8eceb\"></div></td></tr>
             <tr><td style=\"padding:22px 50px 26px;text-align:center;font-size:11px;line-height:1.55;color:#71858d\">Didn’t you create this account? You can safely ignore this email — nothing will happen without your confirmation.</td></tr>
-            <tr><td style=\"padding:22px 30px 24px;background:#38586a;text-align:center\"><div style=\"color:#ff9000;font-size:13px;font-weight:800;letter-spacing:1.3px\">SERIOUSLY DIFFERENT</div><div style=\"padding-top:14px;font-size:11px\"><a href=\"{escape(_site_url('/contact'))}\" style=\"color:#ffffff;text-decoration:none\">Help Centre</a><span style=\"color:#ffb65a;padding:0 5px\">|</span><a href=\"{escape(_site_url('/contact'))}\" style=\"color:#ffffff;text-decoration:none\">Returns</a><span style=\"color:#ffb65a;padding:0 5px\">|</span><a href=\"{escape(_site_url('/profile'))}\" style=\"color:#ffffff;text-decoration:none\">My Account</a><span style=\"color:#ffb65a;padding:0 5px\">|</span><a href=\"{escape(_site_url('/about'))}\" style=\"color:#ffffff;text-decoration:none\">Terms</a></div><div style=\"padding-top:12px;color:#d8e0e3;font-size:11px\">EEHOOK · Dubai, United Arab Emirates · <a href=\"{site_url}\" style=\"color:#ffffff;text-decoration:none\">www.eehook.com</a></div><div style=\"padding-top:6px;color:#d8e0e3;font-size:11px\">Questions? Write to <a href=\"mailto:support@eehook.com\" style=\"color:#ffffff;text-decoration:none\">support@eehook.com</a></div><div style=\"padding-top:13px;color:#b9c8ce;font-size:10px\">You’re receiving this email because an account was created at eehook.com.</div></td></tr>
+            <tr><td style=\"padding:22px 30px 24px;background:#38586a;text-align:center\"><div style=\"color:#ff9000;font-size:13px;font-weight:800;letter-spacing:1.3px\">THANK YOU FOR SHOPPING</div><div style=\"padding-top:14px;font-size:11px\"><a href=\"{escape(_site_url('/contact'))}\" style=\"color:#ffffff;text-decoration:none\">Help Centre</a><span style=\"color:#ffb65a;padding:0 5px\">|</span><a href=\"{escape(_site_url('/contact'))}\" style=\"color:#ffffff;text-decoration:none\">Returns</a><span style=\"color:#ffb65a;padding:0 5px\">|</span><a href=\"{escape(_site_url('/profile'))}\" style=\"color:#ffffff;text-decoration:none\">My Account</a><span style=\"color:#ffb65a;padding:0 5px\">|</span><a href=\"{escape(_site_url('/about'))}\" style=\"color:#ffffff;text-decoration:none\">Terms</a></div><div style=\"padding-top:12px;color:#d8e0e3;font-size:11px\">LIFE-LINE · Configured location · <a href=\"{site_url}\" style=\"color:#ffffff;text-decoration:none\">the configured site</a></div><div style=\"padding-top:6px;color:#d8e0e3;font-size:11px\">Questions? Write to <a href=\"mailto:support@example.invalid\" style=\"color:#ffffff;text-decoration:none\">support@example.invalid</a></div><div style=\"padding-top:13px;color:#b9c8ce;font-size:10px\">You’re receiving this email because an account was created at the configured site.</div></td></tr>
           </table>
           <div style=\"padding:16px 0 4px;text-align:center\">{_social_links_html()}</div>
         </div>
@@ -453,9 +447,9 @@ def send_registration_email(user_id):
         name = _name(user)
         gift_html = _welcome_gift_html(assignments)
         gift_text = _welcome_gift_text(assignments)
-        subject = "Welcome to EEHOOK — your account is ready"
+        subject = "Welcome to LIFE-LINE — your account is ready"
         text_body = (
-            f"Welcome to EEHOOK, {name}.\n\n"
+            f"Welcome to LIFE-LINE, {name}.\n\n"
             "Your account is active and ready for seriously different products.\n"
             f"{gift_text}\n"
             f"Start shopping: {_site_url('/')}\n"
@@ -466,7 +460,7 @@ def send_registration_email(user_id):
             text_body,
             html_body,
             user.email,
-            inline_images=(("eehook-logo", EMAIL_LOGO_PATH),),
+            inline_images=(("life-line-logo", EMAIL_LOGO_PATH),),
         )
         if not _send(message):
             return False
@@ -551,39 +545,39 @@ def _order_confirmation_email_html(
         <title>Order confirmed - {escape(number)}</title>
         <style>
           @media screen and (max-width: 620px) {{
-            .eehook-email-shell {{ padding: 10px !important; }}
-            .eehook-email-card {{ width: 100% !important; }}
-            .eehook-email-body {{ padding: 34px 20px 28px !important; }}
-            .eehook-email-header {{ padding: 24px 20px 16px !important; }}
-            .eehook-meta-cell {{ display: block !important; width: 100% !important; border-right: 0 !important; border-bottom: 1px solid #e7e0d3 !important; }}
-            .eehook-meta-cell:last-child {{ border-bottom: 0 !important; }}
-            .eehook-info-cell {{ display: block !important; width: 100% !important; padding: 12px 0 0 !important; }}
-            .eehook-info-cell + .eehook-info-cell {{ padding-top: 22px !important; }}
-            .eehook-items-table {{ font-size: 13px !important; }}
+            .life-line-email-shell {{ padding: 10px !important; }}
+            .life-line-email-card {{ width: 100% !important; }}
+            .life-line-email-body {{ padding: 34px 20px 28px !important; }}
+            .life-line-email-header {{ padding: 24px 20px 16px !important; }}
+            .life-line-meta-cell {{ display: block !important; width: 100% !important; border-right: 0 !important; border-bottom: 1px solid #e7e0d3 !important; }}
+            .life-line-meta-cell:last-child {{ border-bottom: 0 !important; }}
+            .life-line-info-cell {{ display: block !important; width: 100% !important; padding: 12px 0 0 !important; }}
+            .life-line-info-cell + .life-line-info-cell {{ padding-top: 22px !important; }}
+            .life-line-items-table {{ font-size: 13px !important; }}
           }}
         </style>
       </head>
       <body style="margin:0;padding:0;background:#f4f0e6;font-family:Arial,Helvetica,sans-serif;color:#304a54">
-        <div class="eehook-email-shell" style="padding:28px 12px;background:#f4f0e6">
-          <table role="presentation" class="eehook-email-card" width="100%" cellpadding="0" cellspacing="0" style="width:100%;max-width:620px;margin:0 auto;background:#ffffff;border-top:4px solid #ff9000;border-radius:8px;overflow:hidden">
-            <tr><td class="eehook-email-header" style="padding:28px 30px 18px;text-align:right;background:#fffaf0">
-              <a href="{site_url}" style="text-decoration:none"><img src="cid:eehook-logo" width="165" alt="EEHOOK - Seriously Different" style="display:inline-block;width:165px;max-width:70%;height:auto;border:0"></a>
+        <div class="life-line-email-shell" style="padding:28px 12px;background:#f4f0e6">
+          <table role="presentation" class="life-line-email-card" width="100%" cellpadding="0" cellspacing="0" style="width:100%;max-width:620px;margin:0 auto;background:#ffffff;border-top:4px solid #ff9000;border-radius:8px;overflow:hidden">
+            <tr><td class="life-line-email-header" style="padding:28px 30px 18px;text-align:right;background:#fffaf0">
+              <a href="{site_url}" style="text-decoration:none"><img src="cid:life-line-logo" width="165" alt="LIFE-LINE - Seriously Different" style="display:inline-block;width:165px;max-width:70%;height:auto;border:0"></a>
             </td></tr>
-            <tr><td class="eehook-email-body" style="padding:66px 48px 58px">
+            <tr><td class="life-line-email-body" style="padding:66px 48px 58px">
               <div style="font-size:12px;line-height:1.4;color:#ff9000;font-weight:800;letter-spacing:4px">ORDER CONFIRMED <span style="display:inline-block;width:21px;height:21px;line-height:21px;margin-left:3px;border-radius:50%;background:#ff9000;color:#17364b;text-align:center;font-size:14px;letter-spacing:0">✓</span></div>
               <h1 style="margin:62px 0 10px;font-size:28px;line-height:1.15;color:#38586a;letter-spacing:-.4px">Thank you, {escape(name)}.</h1>
               <p style="margin:0;font-size:15px;line-height:1.65;color:#71858d">We&apos;ve received your order and we&apos;re getting it ready. You&apos;ll get another email with tracking details as soon as it ships.</p>
 
               <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin-top:28px;border-top:2px solid #ff9000;background:#fffaf0">
                 <tr>
-                  <td class="eehook-meta-cell" width="33.33%" style="padding:17px 8px;text-align:center;border-right:1px solid #e7e0d3"><div style="font-size:10px;line-height:1.4;color:#71858d;font-weight:800;letter-spacing:2px">ORDER NO.</div><div style="padding-top:7px;font-size:15px;color:#38586a;font-weight:800">#{escape(number)}</div></td>
-                  <td class="eehook-meta-cell" width="33.33%" style="padding:17px 8px;text-align:center;border-right:1px solid #e7e0d3"><div style="font-size:10px;line-height:1.4;color:#71858d;font-weight:800;letter-spacing:2px">ORDER DATE</div><div style="padding-top:7px;font-size:15px;color:#38586a;font-weight:800">{escape(localtime(order.created_at).strftime("%d %b %Y"))}</div></td>
-                  <td class="eehook-meta-cell" width="33.33%" style="padding:17px 8px;text-align:center"><div style="font-size:10px;line-height:1.4;color:#71858d;font-weight:800;letter-spacing:2px">ARRIVES</div><div style="padding-top:7px;font-size:15px;color:#38586a;font-weight:800">{arrival}</div></td>
+                  <td class="life-line-meta-cell" width="33.33%" style="padding:17px 8px;text-align:center;border-right:1px solid #e7e0d3"><div style="font-size:10px;line-height:1.4;color:#71858d;font-weight:800;letter-spacing:2px">ORDER NO.</div><div style="padding-top:7px;font-size:15px;color:#38586a;font-weight:800">#{escape(number)}</div></td>
+                  <td class="life-line-meta-cell" width="33.33%" style="padding:17px 8px;text-align:center;border-right:1px solid #e7e0d3"><div style="font-size:10px;line-height:1.4;color:#71858d;font-weight:800;letter-spacing:2px">ORDER DATE</div><div style="padding-top:7px;font-size:15px;color:#38586a;font-weight:800">{escape(localtime(order.created_at).strftime("%d %b %Y"))}</div></td>
+                  <td class="life-line-meta-cell" width="33.33%" style="padding:17px 8px;text-align:center"><div style="font-size:10px;line-height:1.4;color:#71858d;font-weight:800;letter-spacing:2px">ARRIVES</div><div style="padding-top:7px;font-size:15px;color:#38586a;font-weight:800">{arrival}</div></td>
                 </tr>
               </table>
 
               <div style="padding-top:44px;font-size:12px;line-height:1.4;color:#38586a;font-weight:800;letter-spacing:3px;border-bottom:2px solid #38586a;padding-bottom:7px">YOUR ITEMS</div>
-              <table role="presentation" class="eehook-items-table" width="100%" cellpadding="0" cellspacing="0" style="border-collapse:collapse">{_order_item_rows_html(items, image_cids)}</table>
+              <table role="presentation" class="life-line-items-table" width="100%" cellpadding="0" cellspacing="0" style="border-collapse:collapse">{_order_item_rows_html(items, image_cids)}</table>
 
               <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width:340px;margin:24px 0 0 auto;font-size:14px">
                 <tr><td style="padding:6px 0;text-align:left;color:#71858d">Subtotal</td><td style="padding:6px 0;text-align:right;color:#304a54">{escape(totals["subtotal"])}</td></tr>
@@ -596,14 +590,14 @@ def _order_confirmation_email_html(
 
               <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin-top:38px">
                 <tr>
-                  <td class="eehook-info-cell" width="50%" valign="top" style="padding-right:14px"><div style="font-size:12px;color:#38586a;font-weight:800;letter-spacing:3px">SHIPPING TO</div><div style="padding-top:10px;font-size:14px;line-height:1.65;color:#304a54">{address_lines}</div></td>
-                  <td class="eehook-info-cell" width="50%" valign="top" style="padding-left:14px"><div style="font-size:12px;color:#38586a;font-weight:800;letter-spacing:3px">PAYMENT</div><div style="padding-top:10px;font-size:14px;line-height:1.65;color:#304a54">{payment_lines}</div></td>
+                  <td class="life-line-info-cell" width="50%" valign="top" style="padding-right:14px"><div style="font-size:12px;color:#38586a;font-weight:800;letter-spacing:3px">SHIPPING TO</div><div style="padding-top:10px;font-size:14px;line-height:1.65;color:#304a54">{address_lines}</div></td>
+                  <td class="life-line-info-cell" width="50%" valign="top" style="padding-left:14px"><div style="font-size:12px;color:#38586a;font-weight:800;letter-spacing:3px">PAYMENT</div><div style="padding-top:10px;font-size:14px;line-height:1.65;color:#304a54">{payment_lines}</div></td>
                 </tr>
               </table>
 
               <div style="padding-top:48px;text-align:center"><a href="{order_url}" style="display:inline-block;padding:11px 15px;border-radius:18px;background:#7891a0;color:#ffffff;font-size:12px;font-weight:800;text-decoration:none">VIEW MY ORDER <span style="font-size:18px;line-height:10px;vertical-align:-1px">→</span></a></div>
             </td></tr>
-            <tr><td style="padding:40px 30px 44px;background:#38586a;text-align:center"><div style="color:#ff9000;font-size:13px;font-weight:800;letter-spacing:3px">SERIOUSLY DIFFERENT</div><div style="padding-top:20px;font-size:12px"><a href="{escape(_site_url('/contact'))}" style="color:#ffffff;text-decoration:none">Help Centre</a><span style="color:#ffb65a;padding:0 5px">|</span><a href="{escape(_site_url('/contact'))}" style="color:#ffffff;text-decoration:none">Returns</a><span style="color:#ffb65a;padding:0 5px">|</span><a href="{escape(_site_url('/profile'))}" style="color:#ffffff;text-decoration:none">My Account</a><span style="color:#ffb65a;padding:0 5px">|</span><a href="{escape(_site_url('/about'))}" style="color:#ffffff;text-decoration:none">Terms</a></div><div style="padding-top:18px;color:#d8e0e3;font-size:11px">eehook · Dubai, United Arab Emirates · <a href="{site_url}" style="color:#ffffff;text-decoration:none">www.eehook.com</a></div><div style="padding-top:7px;color:#d8e0e3;font-size:11px">Questions? Write to <a href="mailto:support@eehook.com" style="color:#ffffff;text-decoration:none">support@eehook.com</a></div><div style="padding-top:14px;color:#b9c8ce;font-size:10px">You&apos;re receiving this email because you placed an order at eehook.com.</div></td></tr>
+            <tr><td style="padding:40px 30px 44px;background:#38586a;text-align:center"><div style="color:#ff9000;font-size:13px;font-weight:800;letter-spacing:3px">THANK YOU FOR SHOPPING</div><div style="padding-top:20px;font-size:12px"><a href="{escape(_site_url('/contact'))}" style="color:#ffffff;text-decoration:none">Help Centre</a><span style="color:#ffb65a;padding:0 5px">|</span><a href="{escape(_site_url('/contact'))}" style="color:#ffffff;text-decoration:none">Returns</a><span style="color:#ffb65a;padding:0 5px">|</span><a href="{escape(_site_url('/profile'))}" style="color:#ffffff;text-decoration:none">My Account</a><span style="color:#ffb65a;padding:0 5px">|</span><a href="{escape(_site_url('/about'))}" style="color:#ffffff;text-decoration:none">Terms</a></div><div style="padding-top:18px;color:#d8e0e3;font-size:11px">life-line · Configured location · <a href="{site_url}" style="color:#ffffff;text-decoration:none">the configured site</a></div><div style="padding-top:7px;color:#d8e0e3;font-size:11px">Questions? Write to <a href="mailto:support@example.invalid" style="color:#ffffff;text-decoration:none">support@example.invalid</a></div><div style="padding-top:14px;color:#b9c8ce;font-size:10px">You&apos;re receiving this email because you placed an order at the configured site.</div></td></tr>
           </table>
           <div style="padding:16px 0 4px;text-align:center">{_social_links_html()}</div>
         </div>
@@ -707,8 +701,8 @@ def _invoice_email_html(order, name, invoice_number, items):
         <title>Paid invoice - {escape(invoice_number)}</title>
         <style>
           @media screen and (max-width: 620px) {{
-            .eehook-email-shell {{ padding: 10px !important; }}
-            .eehook-email-card {{ width: 100% !important; }}
+            .life-line-email-shell {{ padding: 10px !important; }}
+            .life-line-email-card {{ width: 100% !important; }}
             .invoice-header {{ padding: 24px 20px 18px !important; }}
             .invoice-band {{ padding: 23px 20px !important; }}
             .invoice-body {{ padding: 30px 20px 28px !important; }}
@@ -722,10 +716,10 @@ def _invoice_email_html(order, name, invoice_number, items):
         </style>
       </head>
       <body style="margin:0;padding:0;background:#f4f0e6;font-family:Arial,Helvetica,sans-serif;color:#304a54">
-        <div class="eehook-email-shell" style="padding:28px 12px;background:#f4f0e6">
-          <table role="presentation" class="eehook-email-card" width="100%" cellpadding="0" cellspacing="0" style="width:100%;max-width:620px;margin:0 auto;background:#ffffff;border-top:4px solid #ff9000;border-radius:8px;overflow:hidden">
+        <div class="life-line-email-shell" style="padding:28px 12px;background:#f4f0e6">
+          <table role="presentation" class="life-line-email-card" width="100%" cellpadding="0" cellspacing="0" style="width:100%;max-width:620px;margin:0 auto;background:#ffffff;border-top:4px solid #ff9000;border-radius:8px;overflow:hidden">
             <tr><td class="invoice-header" style="padding:28px 30px 22px;text-align:left;background:#fffaf0">
-              <a href="{site_url}" style="text-decoration:none"><img src="cid:eehook-logo" width="185" alt="EEHOOK - Seriously Different" style="display:block;width:185px;max-width:80%;height:auto;border:0"></a>
+              <a href="{site_url}" style="text-decoration:none"><img src="cid:life-line-logo" width="185" alt="LIFE-LINE - Seriously Different" style="display:block;width:185px;max-width:80%;height:auto;border:0"></a>
             </td></tr>
             <tr><td class="invoice-band" style="padding:24px 36px;background:#38586a;color:#ffffff">
               <table role="presentation" width="100%" cellpadding="0" cellspacing="0"><tr>
@@ -734,8 +728,8 @@ def _invoice_email_html(order, name, invoice_number, items):
               </tr></table>
             </td></tr>
             <tr><td class="invoice-body" style="padding:50px 38px 34px">
-              <h1 style="margin:0 0 9px;font-size:24px;line-height:1.2;color:#38586a;letter-spacing:-.3px">Hi {escape(name)}, you&apos;re all HOOKED in!</h1>
-              <p style="margin:0;font-size:15px;line-height:1.6;color:#71858d">Thank you for shopping with EEHOOK. Your payment has been received and your order is being prepared. Your invoice is below - a PDF copy is attached for your records.</p>
+               <h1 style="margin:0 0 9px;font-size:24px;line-height:1.2;color:#38586a;letter-spacing:-.3px">Hi {escape(name)}, your order is being prepared.</h1>
+              <p style="margin:0;font-size:15px;line-height:1.6;color:#71858d">Thank you for shopping with LIFE-LINE. Your payment has been received and your order is being prepared. Your invoice is below - a PDF copy is attached for your records.</p>
 
               <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin-top:28px"><tr>
                 <td class="invoice-half" width="50%" valign="top" style="padding-right:18px"><div style="font-size:11px;color:#38586a;font-weight:800;letter-spacing:2px"><span style="display:inline-block;width:10px;height:19px;margin-right:8px;background:#ff9000;vertical-align:-5px"></span>BILLED TO</div><div style="padding-top:15px;font-size:13px;line-height:1.6;color:#304a54">{customer_lines}</div></td>
@@ -759,9 +753,9 @@ def _invoice_email_html(order, name, invoice_number, items):
 
               <div style="margin-top:34px;border-top:1px dashed #f0bd68"></div>
               <div class="invoice-actions" style="padding-top:28px;text-align:center"><a href="{site_url}" style="display:inline-block;margin:0 2px;padding:11px 18px;border-radius:8px;background:#c8d5df;color:#38586a;font-size:12px;text-decoration:none">Buy More</a><a href="{escape(_site_url('/profile'))}" style="display:inline-block;margin:0 2px;padding:11px 18px;border-radius:8px;background:#c8d5df;color:#38586a;font-size:12px;text-decoration:none">My Account</a></div>
-              <div style="padding-top:25px;text-align:center;font-family:Georgia,serif;font-size:11px;color:#9aa7ae">Need a hand? Reply to this email or write to <a href="mailto:info@eehook.com" style="color:#ff9000;text-decoration:none">info@eehook.com</a></div>
+               <div style="padding-top:25px;text-align:center;font-family:Georgia,serif;font-size:11px;color:#9aa7ae">Need a hand? Reply to this email or write to <a href="mailto:support@example.invalid" style="color:#ff9000;text-decoration:none">support@example.invalid</a></div>
             </td></tr>
-            <tr><td class="invoice-footer" style="padding:39px 30px 44px;background:#38586a;text-align:center"><div style="color:#ff9000;font-size:13px;font-weight:800;letter-spacing:3px">SERIOUSLY DIFFERENT</div><div style="padding-top:21px;font-size:12px"><a href="{escape(_site_url('/contact'))}" style="color:#ffffff;text-decoration:none">Help Centre</a><span style="color:#ffb65a;padding:0 5px">|</span><a href="{escape(_site_url('/contact'))}" style="color:#ffffff;text-decoration:none">Returns</a><span style="color:#ffb65a;padding:0 5px">|</span><a href="{invoice_url}" style="color:#ffffff;text-decoration:none">Track Order</a><span style="color:#ffb65a;padding:0 5px">|</span><a href="{escape(_site_url('/about'))}" style="color:#ffffff;text-decoration:none">Terms</a></div><div style="padding-top:19px;color:#d8e0e3;font-size:11px">EEHOOK · Dubai, United Arab Emirates</div><div style="padding-top:7px;color:#d8e0e3;font-size:11px">TRN {seller_vat} · <a href="{site_url}" style="color:#ffffff;text-decoration:none">www.eehook.com</a></div><div style="padding-top:8px;color:#b9c8ce;font-size:10px">This is a computer-generated invoice and does not require a signature.</div><div style="padding-top:6px;color:#b9c8ce;font-size:10px">You&apos;re receiving this email because you placed an order at eehook.com.</div></td></tr>
+            <tr><td class="invoice-footer" style="padding:39px 30px 44px;background:#38586a;text-align:center"><div style="color:#ff9000;font-size:13px;font-weight:800;letter-spacing:3px">THANK YOU FOR SHOPPING</div><div style="padding-top:21px;font-size:12px"><a href="{escape(_site_url('/contact'))}" style="color:#ffffff;text-decoration:none">Help Centre</a><span style="color:#ffb65a;padding:0 5px">|</span><a href="{escape(_site_url('/contact'))}" style="color:#ffffff;text-decoration:none">Returns</a><span style="color:#ffb65a;padding:0 5px">|</span><a href="{invoice_url}" style="color:#ffffff;text-decoration:none">Track Order</a><span style="color:#ffb65a;padding:0 5px">|</span><a href="{escape(_site_url('/about'))}" style="color:#ffffff;text-decoration:none">Terms</a></div><div style="padding-top:19px;color:#d8e0e3;font-size:11px">LIFE-LINE · Configured location</div><div style="padding-top:7px;color:#d8e0e3;font-size:11px">TRN {seller_vat} · <a href="{site_url}" style="color:#ffffff;text-decoration:none">the configured site</a></div><div style="padding-top:8px;color:#b9c8ce;font-size:10px">This is a computer-generated invoice and does not require a signature.</div><div style="padding-top:6px;color:#b9c8ce;font-size:10px">You&apos;re receiving this email because you placed an order at the configured site.</div></td></tr>
           </table>
           <div style="padding:16px 0 4px;text-align:center">{_social_links_html()}</div>
         </div>
@@ -776,8 +770,8 @@ def _invoice_email_text(order, name, invoice_number, items):
     lines = [
         f"Paid invoice - {invoice_number}",
         "",
-        f"Hi {name}, you're all HOOKED in!",
-        "Thank you for shopping with EEHOOK. Your payment has been received and your order is being prepared.",
+        f"Hi {name}, your order is being prepared.",
+        "Thank you for shopping with LIFE-LINE. Your payment has been received and your order is being prepared.",
         "Your invoice is included below and attached as a PDF for your records.",
         "",
         f"Order date: {invoice_date}",
@@ -817,7 +811,7 @@ def send_order_confirmation_email(order_id):
         number = _order_number(order)
         items = list(order.items.all())
         image_cids = {}
-        inline_images = [("eehook-logo", EMAIL_LOGO_PATH)]
+        inline_images = [("life-line-logo", EMAIL_LOGO_PATH)]
         for index, item in enumerate(items):
             image_path = _order_item_image_path(item)
             if image_path:
@@ -861,7 +855,7 @@ def send_paid_invoice_email(order_id):
         number = _email_invoice_number(order)
         items = list(order.items.all())
         pdf = render_tax_invoice(order)
-        filename = f"EEHOOK-{_order_number(order)}-invoice.pdf"
+        filename = f"LIFE-LINE-{_order_number(order)}-invoice.pdf"
         text_body = _invoice_email_text(order, name, number, items)
         html_body = _invoice_email_html(
             order,
@@ -875,7 +869,7 @@ def send_paid_invoice_email(order_id):
             html_body,
             order.user.email,
             attachment=(filename, pdf, "application/pdf"),
-            inline_images=(("eehook-logo", EMAIL_LOGO_PATH),),
+            inline_images=(("life-line-logo", EMAIL_LOGO_PATH),),
         )
         if not _send(message):
             return False
