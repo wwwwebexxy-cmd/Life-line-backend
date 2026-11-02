@@ -12,28 +12,17 @@ from dotenv import load_dotenv
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-# A deployment-provided SECRET_KEY must always override local dotenv values.
-_deployment_secret_key = os.environ.get("SECRET_KEY")
-_deployment_allowed_hosts = os.environ.get("ALLOWED_HOSTS")
 load_dotenv(BASE_DIR / ".env")
 
 
 # SECURITY
 
-SECRET_KEY = (
-    _deployment_secret_key
-    or os.getenv("DEPLOYMENT_SECRET_KEY")
-    or os.getenv("SECRET_KEY", "")
-)
+SECRET_KEY = os.getenv("SECRET_KEY", "")
 
 DEBUG = os.getenv("DEBUG", "False").lower() in ("true", "1", "t")
 _IS_TESTING = "test" in sys.argv
 
-_allowed_hosts_value = (
-    _deployment_allowed_hosts
-    or os.getenv("DEPLOYMENT_ALLOWED_HOSTS")
-    or os.getenv("ALLOWED_HOSTS", "")
-)
+_allowed_hosts_value = os.getenv("ALLOWED_HOSTS", "")
 ALLOWED_HOSTS = [host.strip() for host in _allowed_hosts_value.split(",") if host.strip()]
 if not DEBUG:
     if (
@@ -213,15 +202,15 @@ SIMPLE_JWT = {
 # Browser JWTs stay in HttpOnly cookies.  `None` is only appropriate where
 # the storefront and API are genuinely cross-site; it requires strict CORS and
 # CSRF configuration below.  Lax is the safer default for same-site subdomains.
-JWT_ACCESS_COOKIE_NAME = "eehook_access"
-JWT_REFRESH_COOKIE_NAME = "eehook_refresh"
+JWT_ACCESS_COOKIE_NAME = "life_line_access"
+JWT_REFRESH_COOKIE_NAME = "life_line_refresh"
 JWT_ADMIN_ACCESS_COOKIE_NAME = os.getenv(
     "JWT_ADMIN_ACCESS_COOKIE_NAME",
-    "eehook_admin_access",
+    "life_line_admin_access",
 ).strip()
 JWT_ADMIN_REFRESH_COOKIE_NAME = os.getenv(
     "JWT_ADMIN_REFRESH_COOKIE_NAME",
-    "eehook_admin_refresh",
+    "life_line_admin_refresh",
 ).strip()
 JWT_COOKIE_DOMAIN = os.getenv("JWT_COOKIE_DOMAIN", "").strip()
 JWT_COOKIE_SAMESITE = os.getenv("JWT_COOKIE_SAMESITE", "Lax").strip().title()
@@ -261,7 +250,7 @@ if EMAIL_PROVIDER == "mailtrap":
     )
     DEFAULT_FROM_EMAIL = os.getenv(
         "MAILTRAP_FROM_EMAIL",
-        os.getenv("DEFAULT_FROM_EMAIL", "no-reply@eehook.test"),
+        os.getenv("DEFAULT_FROM_EMAIL", "no-reply@life-line.test"),
     ).strip()
 else:
     EMAIL_HOST = os.getenv("EMAIL_HOST", "smtp.gmail.com").strip()

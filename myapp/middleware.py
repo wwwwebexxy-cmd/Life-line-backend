@@ -25,9 +25,8 @@ class AbuseProtectionMiddleware:
 
     @staticmethod
     def _client_ip(request):
-        # Gunicorn is bound to localhost, so only a local reverse proxy can
-        # reach it in production. Trust the proxy's normalized X-Real-IP value
-        # only when the direct peer is explicitly configured as trusted.
+        # Trust the proxy's normalized X-Real-IP value only when the direct
+        # peer is explicitly configured as trusted.
         remote_ip = (request.META.get("REMOTE_ADDR") or "").strip()
         trusted_proxy_ips = set(getattr(settings, "TRUSTED_PROXY_IPS", ()))
         if remote_ip not in trusted_proxy_ips:
